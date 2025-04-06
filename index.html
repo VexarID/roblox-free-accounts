@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .username {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .owned {
+            color: green;
+            font-weight: bold;
+        }
+        button {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Account Manager</h1>
+<div id="usernames">
+    <div class="username" id="user1">
+        User1 <button onclick="copyPassword('password1', 'user1')">Copy Password</button>
+    </div>
+    <div class="username" id="user2">
+        User2 <button onclick="copyPassword('password2', 'user2')">Copy Password</button>
+    </div>
+    <div class="username" id="user3">
+        User3 <button onclick="copyPassword('password3', 'user3')">Copy Password</button>
+    </div>
+</div>
+
+<script>
+    const passwords = {
+        password1: "pass1234",
+        password2: "pass5678",
+        password3: "pass91011"
+    };
+
+    function copyPassword(passwordKey, userId) {
+        const password = passwords[passwordKey];
+        navigator.clipboard.writeText(password).then(() => {
+            document.getElementById(userId).classList.add('owned');
+            alert("Password copied to clipboard!");
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+</script>
+
+</body>
+</html>
